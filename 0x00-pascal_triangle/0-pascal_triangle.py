@@ -1,4 +1,16 @@
+#!/usr/bin/python3
+
+"""
+Pascal's Triangle
+"""
+
+
 def pascal_triangle(n):
+    """Print Pascal's Triangle
+
+    Args:
+        n (int): Size of the pascal triangle
+    """
     if n <= 0:
         return []
 

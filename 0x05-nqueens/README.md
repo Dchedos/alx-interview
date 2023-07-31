@@ -19,4 +19,4 @@ The N queens puzzle is the challenge of placing N non-attacking queens on an N×
 
 ## Code Execution
 
-Run the program from the terminal with the appropriate N value, like ./0-nqueens.py 4 and ./0-nqueens.py 6, and it will print all the possible solutions for the N Queens problem as specified in the requirements.
+Run the program from the terminal with the appropriate N value, like `./0-nqueens.py 4` and `./0-nqueens.py 6`, and it will print all the possible solutions for the N Queens problem as specified in the requirements.

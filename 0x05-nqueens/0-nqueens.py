@@ -15,32 +15,35 @@ queen must be placed on the chessboard.
 
 import sys
 
-"""Function to check if placing a queen at a specific position is safe"""
+
 def is_safe(board, row, col, N):
+    """Function to check if placing a queen at a specific position is safe"""
     for i in range(row):
         """Check if there's a queen in the same column or in the diagonal"""
         if board[i] == col or abs(board[i] - col) == abs(i - row):
             return False
     return True
 
-"""Function to solve the N Queens problem using backtracking"""
+
 def solve_nqueens(board, row, N):
-    """If all N rows are filled, we found a solution, print it"""
+    """Function to solve the N Queens problem using backtracking"""
     if row == N:
+        """If all N rows are filled, we found a solution, print it"""
         print([[i, board[i]] for i in range(N)])
         return
 
-    """Try placing the queen in each column of the current row"""
     for col in range(N):
+        """Try placing the queen in each column of the current row"""
         if is_safe(board, row, col, N):
             """If it's safe, mark the position and move to the next row"""
             board[row] = col
             solve_nqueens(board, row + 1, N)
 
-"""Main function to handle input and call the solving function"""
+
 def nqueens(N):
-    """Input validation"""
+    """Main function to handle input and call the solving function"""
     if not isinstance(N, int):
+        """Input validation"""
         print("N must be a number")
         sys.exit(1)
 
@@ -48,9 +51,11 @@ def nqueens(N):
         print("N must be at least 4")
         sys.exit(1)
 
-    """Create an array to represent the board. -1 means no queen in that row."""
+    """Create an array to represent the board.
+    -1 means no queen in that row."""
     board = [-1] * N
     solve_nqueens(board, 0, N)
+
 
 if __name__ == "__main__":
     """Check if the number of arguments is correct"""
@@ -64,4 +69,3 @@ if __name__ == "__main__":
     except ValueError:
         print("N must be a number")
         sys.exit(1)
-

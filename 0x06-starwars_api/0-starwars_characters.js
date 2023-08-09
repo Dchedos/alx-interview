@@ -1,23 +1,31 @@
 #!/usr/bin/node
-
 const request = require('request');
 
+if (process.argv.length !== 3) {
+  console.error('Usage: ./0-starwars_characters.js <Movie ID>');
+  process.exit(1);
+}
+
 const movieId = process.argv[2];
+const apiUrl = `https://swapi-api.alx-tools.comi/api/films/${movieId}`;
 
-const Url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
+request(apiUrl, (error, response, body) => {
+  if (error) {
+    console.error(error);
+  } else {
+    const film = JSON.parse(body);
+    const characters = film.characters;
 
-request(url, async (err, res, body) => {
-  err && console.log(err);
-
-  const charactersArray = (JSON.parse(res.body).characters);
-  for (const character of charactersArray) {
-    await new Promise((resolve, reject) => {
-      request(character, (err, res, body) => {
-        err && console.log(err);
-
-        console.log(JSON.parse(body).name);
-        resolve();
+    characters.forEach((characterUrl) => {
+      request(characterUrl, (charError, charResponse, charBody) => {
+        if (charError) {
+          console.error(charError);
+        } else {
+          const character = JSON.parse(charBody);
+          console.log(character.name);
+        }
       });
     });
   }
 });
+

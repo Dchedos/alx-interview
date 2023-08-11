@@ -7,7 +7,7 @@ if (process.argv.length !== 3) {
   process.exit(1);
 }
 
-async function fetchCharacters(movieId) {
+async function fetchCharacters (movieId) {
   const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
   try {

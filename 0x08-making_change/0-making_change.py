@@ -9,16 +9,14 @@ def makeChange(coins, total):
     """
     if total <= 0:
         return 0
-    """
-    Initialize an array to store the minimum number of coins
-    needed for each value
-    """
-    dp = [sys.maxsize] * (total + 1)
-    dp[0] = 0
-    for i in range(1, total + 1):
-        for coin in coins:
-            if i - coin >= 0:
-                dp[i] = min(dp[i], dp[i - coin] + 1)
-    if dp[total] == sys.maxsize:
+    else:
+        coin = sorted(coins)
+        coin.reverse()
+        counter = 0
+        for i in coin:
+            while(total >= i):
+                counter += 1
+                total -= i
+        if total == 0:
+            return counter
         return -1
-    return dp[total]
